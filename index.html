@@ -21,9 +21,10 @@ body{
 background:linear-gradient(180deg,#020510,#050c1f);
 color:white;
 overflow-x:hidden;
+line-height:1.6;
 }
 
-/* PARTICLES BACKGROUND */
+/* PARTICLES */
 
 #particles-js{
 position:fixed;
@@ -40,8 +41,8 @@ top:0;
 width:100%;
 padding:22px;
 text-align:center;
-background:rgba(0,0,0,.6);
-backdrop-filter:blur(20px);
+background:#020510;
+box-shadow:0 5px 30px rgba(0,0,0,.7);
 z-index:1000;
 }
 
@@ -61,7 +62,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:140px 20px;
+padding:160px 25px;
 }
 
 .hero h1{
@@ -73,8 +74,9 @@ animation:fadeUp 1.2s ease;
 .hero p{
 max-width:700px;
 font-size:20px;
-color:#ccc;
+color:#ddd;
 margin-bottom:40px;
+padding:0 20px;
 }
 
 /* BOTÃO */
@@ -219,8 +221,8 @@ width:90%;
 <h1>THURTECH</h1>
 
 <p>
-Desenvolvimento web moderno e portfólio tecnológico.
-Projetos são apenas demonstrações visuais de estudo.
+Desenvolvimento web moderno e criação de soluções digitais.
+Portfólio contendo projetos demonstrativos e estudos técnicos.
 </p>
 
 <a class="btn" href="#projetos">Ver Projetos</a>
@@ -238,20 +240,20 @@ Projetos são apenas demonstrações visuais de estudo.
 <div class="cards">
 
 <div class="card">
-<h3>CliniCare</h3>
-<p>Projeto de clínica médica.</p>
+<h3>MedLife</h3>
+<p>Plataforma fictícia de serviços médicos digitais.</p>
 <a class="btn" href="clinicare.html">Abrir Projeto</a>
 </div>
 
 <div class="card">
-<h3>FinanPro</h3>
-<p>Projeto financeiro.</p>
+<h3>FinanceHub</h3>
+<p>Sistema fictício de controle financeiro empresarial.</p>
 <a class="btn" href="finanpro.html">Abrir Projeto</a>
 </div>
 
 <div class="card">
-<h3>SmartPay</h3>
-<p>Projeto fintech.</p>
+<h3>PayWave</h3>
+<p>Plataforma fictícia de pagamentos digitais.</p>
 <a class="btn" href="smartpay.html">Abrir Projeto</a>
 </div>
 
@@ -263,8 +265,8 @@ Projetos são apenas demonstrações visuais de estudo.
 
 <h2>Contato</h2>
 
-<a class="whats" href="#">WhatsApp</a>
-<a class="insta" href="#">Instagram</a>
+<a class="whats" href="https://wa.me/5584999999999">WhatsApp</a>
+<a class="insta" href="https://instagram.com/">Instagram</a>
 
 </section>
 
@@ -291,10 +293,9 @@ const sections=document.querySelectorAll(".section");
 window.addEventListener("scroll",()=>{
 
 sections.forEach(sec=>{
-let top=window.scrollY;
 let offset=sec.offsetTop-400;
 
-if(top>=offset){
+if(window.scrollY>=offset){
 sec.classList.add("show");
 }
 
