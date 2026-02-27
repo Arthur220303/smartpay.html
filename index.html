@@ -20,6 +20,20 @@ background:#060c1b;
 color:white;
 }
 
+/* CURSOR */
+
+#cursor{
+width:20px;
+height:20px;
+border:2px solid #00ffe1;
+border-radius:50%;
+position:fixed;
+pointer-events:none;
+transform:translate(-50%,-50%);
+box-shadow:0 0 20px #00ffe1;
+z-index:9999;
+}
+
 /* NAVBAR */
 
 nav{
@@ -27,9 +41,8 @@ position:fixed;
 top:0;
 width:100%;
 padding:22px;
-background:#020510;
 text-align:center;
-box-shadow:0 5px 30px rgba(0,0,0,.6);
+transition:.4s;
 z-index:1000;
 }
 
@@ -38,11 +51,6 @@ color:#00ffe1;
 text-decoration:none;
 margin:0 18px;
 font-weight:bold;
-transition:.3s;
-}
-
-nav a:hover{
-text-shadow:0 0 20px #00ffe1;
 }
 
 /* HERO */
@@ -63,7 +71,6 @@ radial-gradient(circle at center,#00ffe120,transparent 70%);
 .hero h1{
 font-size:70px;
 margin-bottom:25px;
-animation:fadeUp 1.4s ease;
 }
 
 .hero p{
@@ -73,15 +80,16 @@ color:#ccc;
 margin-bottom:40px;
 }
 
-/* BOTÃO */
+/* BUTTON */
 
 .btn{
 padding:18px 50px;
-background:#00ffe1;
+background:linear-gradient(45deg,#00ffe1,#0088ff);
 color:black;
 font-weight:bold;
 border-radius:18px;
 text-decoration:none;
+box-shadow:0 0 40px rgba(0,255,225,.6);
 transition:.4s;
 }
 
@@ -89,11 +97,19 @@ transition:.4s;
 transform:scale(1.1);
 }
 
-/* SEÇÕES */
+/* SECTIONS */
 
 .section{
 padding:140px 40px;
 text-align:center;
+opacity:0;
+transform:translateY(60px);
+transition:1s;
+}
+
+.section.show{
+opacity:1;
+transform:translateY(0);
 }
 
 /* CARDS */
@@ -145,8 +161,6 @@ background:#ff0066;
 color:white;
 }
 
-/* FOOTER */
-
 footer{
 text-align:center;
 padding:60px;
@@ -154,57 +168,38 @@ background:black;
 margin-top:150px;
 }
 
-/* ANIMAÇÃO */
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(70px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-/* RESPONSIVO */
-
 @media(max-width:768px){
-
 .hero h1{
 font-size:45px;
 }
-
 .cards{
 flex-direction:column;
 align-items:center;
 }
-
 .card{
 width:90%;
 }
-
 }
 
 </style>
-
 </head>
 
 <body>
 
-<nav>
+<div id="cursor"></div>
+
+<nav id="navbar">
 <a href="#home">Home</a> |
 <a href="#projetos">Projetos</a> |
 <a href="#contato">Contato</a>
 </nav>
 
-<section id="home" class="hero">
+<section id="home" class="hero section show">
 
 <h1>THURTECH</h1>
 
 <p>
-Desenvolvimento web moderno e criação de sites profissionais.
-Portfólio tecnológico.
+Desenvolvimento web moderno e portfólio tecnológico profissional.
 </p>
 
 <a class="btn" href="#projetos">Ver Projetos</a>
@@ -219,30 +214,26 @@ Portfólio tecnológico.
 
 <div class="card">
 <h3>CliniCare</h3>
-<p>Site clínico premium.</p>
+<p>Site clínico premium</p>
 </div>
 
 <div class="card">
 <h3>FinanPro</h3>
-<p>Financeiro empresarial.</p>
+<p>Financeiro empresarial</p>
 </div>
 
 <div class="card">
 <h3>SmartPay</h3>
-<p>Fintech moderna.</p>
+<p>Fintech moderna</p>
 </div>
 
 </div>
 
 </section>
 
-<section id="contato" class="contact">
+<section id="contato" class="contact section">
 
 <h2>Contato</h2>
-
-<p style="margin:30px 0">
-Entre em contato comigo:
-</p>
 
 <a class="whats" href="https://wa.me/5584999999999">WhatsApp</a>
 <a class="insta" href="https://instagram.com/">Instagram</a>
@@ -252,6 +243,51 @@ Entre em contato comigo:
 <footer>
 THURTECH © 2026
 </footer>
+
+<script>
+
+/* CURSOR */
+
+let cursor = document.getElementById("cursor");
+
+document.addEventListener("mousemove", e=>{
+cursor.style.left = e.clientX+"px";
+cursor.style.top = e.clientY+"px";
+});
+
+/* NAV SCROLL EFFECT */
+
+window.addEventListener("scroll",()=>{
+
+let nav = document.getElementById("navbar");
+
+if(window.scrollY > 80){
+nav.style.background="#020510";
+nav.style.boxShadow="0 5px 40px rgba(0,0,0,.8)";
+}else{
+nav.style.background="transparent";
+}
+
+});
+
+/* FADE SECTIONS */
+
+const sections = document.querySelectorAll(".section");
+
+window.addEventListener("scroll",()=>{
+
+sections.forEach(sec=>{
+let top = window.scrollY;
+let offset = sec.offsetTop - 400;
+
+if(top >= offset){
+sec.classList.add("show");
+}
+});
+
+});
+
+</script>
 
 </body>
 </html>
